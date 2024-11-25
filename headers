@@ -1,0 +1,44 @@
+<th>﻿HEOA Field</th>
+<th>Store Number</th>
+<th>Campus</th>
+<th>Term</th>
+<th>Division</th>
+<th>Department</th>
+<th>Course Number</th>
+<th>Section</th>
+<th>Section Note</th>
+<th>Adoption Status</th>
+<th>Choice Minimum</th>
+<th>Class Usage Indicator</th>
+<th>Item Type Indicator</th>
+<th>ISBN</th>
+<th>UPC</th>
+<th>Author / Manufacturer</th>
+<th>Title / Supply Description</th>
+<th>Edition</th>
+<th>Copyright</th>
+<th>Publisher / Vendor</th>
+<th>eBook Type</th>
+<th>eBook Format</th>
+<th>Rental Flag</th>
+<th>Item ID</th>
+<th>Parent Item ID</th>
+<th>New Retail Price</th>
+<th>Used Retail Price</th>
+<th>New Rental Fee</th>
+<th>Used Rental Fee</th>
+<th>Course Reference Number</th>
+<th>Instructor Last Name</th>
+<th>Instructor First Name</th>
+<th>Attestation Flag</th>
+<th>Follett ACCESS Flag</th>
+<th>Used Price Not Applicable Flag</th>
+<th>Related eBook ID</th>
+<th>Submitter Last Name</th>
+<th>Submitter First Name</th>
+<th>Submitted Date</th>
+<th>Approver Last Name</th>
+<th>Approver First Name</th>
+<th>Approved Date</th>
+<th>Title Relationships</th>
+<th>Duration</th>
