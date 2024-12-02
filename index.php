@@ -58,7 +58,9 @@ if (!($csv = file('tdata'))) {
                     <?php foreach ($csv as $row): ?>
                         <tr>
                             <td>
-                                <?= implode('</td><td>', array_pad(str_getcsv($row, "\t"), 30, '')) ?>
+                                <?= 
+                                    implode('</td><td>', array_pad(str_getcsv($row, "\t"), 30, '')) 
+                                ?>
                             </td>
                         </tr>
                     <?php endforeach ?>
