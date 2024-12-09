@@ -38,12 +38,9 @@ foreach ($csv as $full) {
      * automatically sectioned, falling neatly
      * into the table. */
     if (!empty($row)) {
-        //var_dump($row);
         $currated[] = $row;
     }
 }
-
-//var_dump($currated);
 ?>
 <!DOCTYPE html>
 <html lang="en">
