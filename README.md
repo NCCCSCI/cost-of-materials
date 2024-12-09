@@ -42,17 +42,17 @@ Since the data is already separated, it easily falls into place on the table, pr
 ## How To
 
 Note the search bar in the top right, select it.
-![The search bar](cost-of-materials/markdown-imgs/search_bar.png)
+![The search bar](markdown-imgs/search_bar.png)
 
 Enter the acronym of the course you want to view.
-![Entry of CSCI for the sake of a demo](cost-of-materials/markdown-imgs/csci.png)
+![Entry of CSCI for the sake of a demo](markdown-imgs/csci.png)
 
 See also the selector on the top left, this lets you decide how many rows to display.
-![The show N entries selector, and list of options](cost-of-materials/markdown-imgs/show_entries.png)
+![The show N entries selector, and list of options](markdown-imgs/show_entries.png)
 
 The results automatically appear below, no need to press enter.
-![The table with the results searched for](cost-of-materials/markdown-imgs/csci_result.png)
+![The table with the results searched for](markdown-imgs/csci_result.png)
 
 Additionally, if you want to search a specific column, see the search bars under each column title.  
 Those will search specifically for details within that column.
-![The column search bars](cost-of-materials/markdown-imgs/column_search.png)
+![The column search bars](/markdown-imgs/column_search.png)
