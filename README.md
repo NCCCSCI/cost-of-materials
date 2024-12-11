@@ -6,45 +6,30 @@ By Strawb Smith
 
 - [Disclaimer](#disclaimer)
 - [Objective](#objective)
-- [Cost Selection](#cost-selection)
 - [How To](#how-to)
+- [Credits](#credits)
 
 ## Disclaimer
 
-The table's visual style, format, and search engine  
-were provided by [Datatables.net](https://datatables.net/)  
-Big shoutout to Datatables for their designs.
+This data is provided by Follett and reflects the current state of the NCC adoptions  
+for the current and 2 future semesters.  
+Future semesters will have incomplete data. Some course materials may not be listed here,  
+please check with the instructors or look in Canvas. The data is updated every 24 hours.  
+  
+Bear in mind materials purchased through Follett Access are paid as fees to NCC rather than purchases from the bookstore.
 
 ## Objective
 
 This webpage is designed to assist teachers and staff with finding the expenses of materials
-in a given semester.  
-Openly and cleanly presenting the facts. This is not an estimation,
-it is collecting data from Follett.  
-Please take the time to read the data and compare responsibly.
-
-## Cost Selection
-
-This table in particular curates the data from Follett to be strictly what is useful  
-for answering questions about the cost of materials.  
-To do so:  
-
-1. it reads in the entire file.
-1. Then initializes a curated array, and begins to scan the document.
-1. Per line, it segments the data into elements, and then puts them onto an array.
-1. Once the line is complete, the data points have all been turned into elements in an array. 
-1. The array is pushed onto the curated array, making the curated array a 2 dimensional array.
-1. The curated array is imploded within the html. 
-
-Since the data is already separated, it easily falls into place on the table, producing the result seen on the browser.
-
+in a given semester.
 
 ## How To
 
-Note the search bar in the top right, select it.
-![The search bar](markdown-imgs/search_bar.png)
+Enter the section identifier in the search box. For example: csci20n
+![The search bar](markdown-imgs/csci120n.png)
 
-Enter the acronym of the course you want to view.
+To see all sections, enter the course, do not include a course code,  
+only use the course short hand. For example, csci, which is short for Computer Science.
 ![Entry of CSCI for the sake of a demo](markdown-imgs/csci.png)
 
 See also the selector on the top left, this lets you decide how many rows to display.
@@ -53,6 +38,30 @@ See also the selector on the top left, this lets you decide how many rows to dis
 The results automatically appear below, no need to press enter.
 ![The table with the results searched for](markdown-imgs/csci_result.png)
 
+Make sure to read over the title section and section note.  
+The section note may contain info on whether the book is provided  
+for free via openstax or another venue.  
+The Title can provide context to whether a book is digital or physical.  
+The prices listed are based on the digital or physical book's sale options.  
+
+For example: csci120n - flx has a listing for a Pearson+ copy of the textbook.  
+The singular price is its rental fee via Pearson+
+![A listing of Starting Out with Python as provided by Pearson+](markdown-imgs/pearson.png)
+
+If you want to sort the results by lowest price, clicking a column header, such as New Retail Price,  
+will sort the new retail prices in ascending order, showing cheapest, or zero, first.
+![Demonstration of ascending sorted data](markdown-imgs/asc.png)
+
 Additionally, if you want to search a specific column, see the search bars under each column title.  
 Those will search specifically for details within that column.
-![The column search bars](/markdown-imgs/column_search.png)
+![The column search bars](markdown-imgs/column_search.png)
+
+The table will contain information of multiple semesters at any given time. To exclusively look for a  
+desired semester. Use the search bar under Term, enter the season, year, or both.
+![The table searching for courses under csci, but only during fall terms](markdown-imgs/term.png)
+
+## Credits
+
+The table's visual style, format, and search engine  
+were provided by [Datatables.net](https://datatables.net/)  
+Big shoutout to Datatables for their designs.
