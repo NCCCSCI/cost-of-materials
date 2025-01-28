@@ -1,6 +1,6 @@
 <?php
 
-
+include 'inc/Materials.php';
 // Read in tdata, check for a successful read.
 if (!($csv = file('tdata'))) {
     die('CSV read failed');
@@ -30,6 +30,16 @@ foreach ($csv as $full) {
     $row[] = floatval($holdarr[25]);
     $row[] = floatval($holdarr[26]);
     $row[] = floatval($holdarr[27]);
+    
+    $materials = new Materials($code, $holdarr[15], floatval($holdarr[24]), floatval($holdarr[25]), floatval($holdarr[26]), floatval($holdarr[27]));
+    $row[] = $materials->low;
+    $row[] = $materials->high;
+    
+    /* To determine the lowest and highest prices, 
+     * we grab from holdarr data from index
+     * 24, 25, 26 and 27.
+     * The four available prices for materials.
+     */
 
     /* If $row is NOT empty from this line of $csv
      * shunt the array $row into the array $currated,
@@ -69,6 +79,8 @@ foreach ($csv as $full) {
                         <th>Used Retail Price</th>
                         <th>New Rental Fee</th>
                         <th>Used Rental Fee</th>
+                        <th>Lowest Cost of Materials</th>
+                        <th>Highest Cost of Materials</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -77,7 +89,7 @@ foreach ($csv as $full) {
                             <td>
                                 <?=
                                     // array_pad can help with empty data.
-                                    implode('</td><td>', array_pad($row, 8, ''))
+                                    implode('</td><td>', array_pad($row, 10, ''))
                                 ?>
                             </td>
                         </tr>
