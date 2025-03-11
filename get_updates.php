@@ -1,26 +1,13 @@
 <?php
 #!/usr/bin/php
 
-$phpInput = trim(file_get_contents('php://input'));
-$jsonData = json_decode($phpInput,true);
+$temp = parse_ini_file(".env");
 
-$args              = [
-    'store_id' => ['filter' => FILTER_VALIDATE_REGEXP, 'options' => ['regexp' => '/^\w{1,64}$/']],
-    'username' => ['filter' => FILTER_VALIDATE_REGEXP, 'options' => ['regexp' => '/^\w{1,64}$/']],
-    'password' => ['filter' => FILTER_VALIDATE_REGEXP, 'options' => ['regexp' => '/^\w{1,64}$/']]
-];
-
-$data   = filter_var_array($jsonData, $args);
-if (!is_array($data)) {
-    halt(401);
-}
-
-$storeId = $data['store_id'];
-$username = $data['username'];
-$password = $data['password'];
-if (empty($storeId) || empty($username) || empty($password)) {
-    halt(401);
-}
+$ftp_server = $temp["server"];
+$ftp_port = $temp["port"];
+$storeId = $temp["store"];
+$username = $temp["username"];
+$password = $temp["password"];
 
 $ftp_server = 'REDACTED';
 $ftp_port = 0xEDAC;
@@ -46,14 +33,6 @@ ssh2_disconnect($connection);
 if ($bytesWritten === false){
     halt(500,'File write failed');
 }
-
-$temp = parse_ini_file(".env");
-
-$ftp_server = $temp["server"];
-$ftp_port = $temp["port"];
-$storeId = $temp["store"];
-$username = $temp["username"];
-$password = $temp["password"];
 
 $tmp = tempnam(sys_get_temp_dir(),'HEOA_');
 
