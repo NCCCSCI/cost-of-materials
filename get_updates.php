@@ -9,9 +9,6 @@ $storeId = $temp["store"];
 $username = $temp["username"];
 $password = $temp["password"];
 
-$ftp_server = 'REDACTED';
-$ftp_port = 0xEDAC;
-
 // set up a connection or die
 $connection = ssh2_connect($ftp_server,$ftp_port) or die("Couldn't connect");
 if (!ssh2_auth_password($connection, $username, $password)) {
@@ -33,8 +30,6 @@ ssh2_disconnect($connection);
 if ($bytesWritten === false){
     halt(500,'File write failed');
 }
-
-$tmp = tempnam(sys_get_temp_dir(),'HEOA_');
 
 $zip = new ZipArchive;
 $zipOkay = true;
