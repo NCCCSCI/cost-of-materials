@@ -5,7 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(202);
     die;
 }
-/*
+
 $phpInput = trim(file_get_contents('php://input'));
 $jsonData = json_decode($phpInput,true);
 
@@ -51,7 +51,7 @@ ssh2_disconnect($connection);
 if ($bytesWritten === false){
     halt(500,'File write failed');
 }
-*/
+
 if($env = parse_ini_file(".env")){
     // var_dump($env);
     $ftp_server = $env["server"];
