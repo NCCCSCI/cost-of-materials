@@ -58,7 +58,7 @@ if ($resultCode !== 0) {
     halt(500, 'Virus');
 }
 
-rename($txt,'/var/www/html/cost-ov-materials/LATEST.txt');
+rename($txt,'/var/www/html/cost-of-materials/LATEST.txt');
 
 exit(0);
 
