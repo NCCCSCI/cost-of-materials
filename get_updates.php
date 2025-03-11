@@ -1,6 +1,6 @@
+#!/usr/bin/php
 <?php
 
-#!/usr/bin/php
 
 $temp = parse_ini_file(".env");
 
