@@ -29,7 +29,7 @@ if ($zip->open($tmp) === TRUE) {
 } else {
     $zipOkay = false;
 }
-var_dump($tmp);
+//var_dump($tmp);
 unlink($tmp);
 
 if (!$zipOkay) {
