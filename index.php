@@ -1,19 +1,20 @@
 <?php
-
 declare(strict_types=1);
 require_once 'inc/Material.php';
 require_once 'inc/Section.php';
 // Read in tdata, check for a successful read.
-if (!($csv = file('tdata'))) {
+if (!($csv = file('LATEST.txt'))) {
     die('CSV read failed');
 }
-
 $currated = [];
 $vertArr = [];
+
 $sectCode = "";
 $sections = [];
 $previousCourse = "";
 $previousDesignator = "";
+array_shift($csv);
+array_pop($csv);
 foreach ($csv as $full) {
     $holdArr = str_getcsv($full, "\t");
     

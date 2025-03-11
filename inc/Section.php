@@ -27,6 +27,8 @@ class Section{
             var_dump($title);
             echo " auth ";
             var_dump($author); */
+	    $author = addcslashes($author,'/');
+	    $publisher = addcslashes($publisher,'/');
             $re1 = preg_replace("/\b(THE|A|OF|IS|AN|AND|($author)|($publisher)|ETEXT|EBOOK|SUBSCRIPTION|\d+-\w+ TERM|INSTANT ACCESS)\b/i", '', $title);
             // remove anything in parentheses
             $re2 = preg_replace('/(\s*\([^)]+\))/', '', $re1);
