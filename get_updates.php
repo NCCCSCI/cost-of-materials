@@ -9,14 +9,6 @@ $storeId = $temp["store"];
 $username = $temp["username"];
 $password = $temp["password"];
 
-echo <<<END
-    $ftp_server
-    $ftp_port
-    $storeId
-    $username
-    $password
-END;
-
 $tmp = tempnam(sys_get_temp_dir(),'HEOA_');
 
 $zip = new ZipArchive;
