@@ -58,6 +58,8 @@ if ($resultCode !== 0) {
     halt(500, 'Virus');
 }
 
+rename($txt,'/var/www/html/cost-ov-materials/LATEST.txt');
+
 exit(0);
 
 function halt($code, $message = '') {
