@@ -1,13 +1,109 @@
 <?php
+
+declare(strict_types=1);
+require_once 'inc/Material.php';
+require_once 'inc/Section.php';
+// Read in tdata, check for a successful read.
 if (!($csv = file('tdata'))) {
     die('CSV read failed');
+}
+
+$currated = [];
+$vertArr = [];
+$sectCode = "";
+$sections = [];
+$previousCourse = "";
+$previousDesignator = "";
+foreach ($csv as $full) {
+    $holdArr = str_getcsv($full, "\t");
+    
+    $term = trim($holdArr[2]);
+    $courseCode = trim($holdArr[4].$holdArr[5]);
+    $sectionDesignator = trim($holdArr[6]);
+    
+    // $row = [];
+    // Term $holdArr[2];
+    // $row[] = $courseCode;
+    // $row[] = $sectionDesignator;
+    // Section Note $holdArr[7];
+    // Title $holdArr[15];
+    // New Retail floatval($holdArr[24]);
+    // Used Retail floatval($holdArr[25]);
+    // New Rent floatval($holdArr[26]);
+    // Used Rent = floatval($holdArr[27]);
+    
+    if ($previousDesignator.$previousCourse != $sectionDesignator.$courseCode) {
+        // echo "there".PHP_EOL;
+        // foreach ($vertArr as $v) {
+        if (isset($sections[$term . $courseCode . $sectionDesignator])) {
+            $section = $sections[$term . $courseCode . $sectionDesignator];
+        } else {
+            $section = new Section($term, $courseCode, $sectionDesignator);
+            $sections[$term . $courseCode . $sectionDesignator] = $section;
+        }
+        $priceData = [
+            floatval($holdArr[24]),
+            floatval($holdArr[25]),
+            floatval($holdArr[26]),
+            floatval($holdArr[27])];
+
+        $section->addMaterial($holdArr[18], $holdArr[15], $holdArr[14], $priceData);
+        // }
+        
+        
+        
+        $vertArr = [];
+        
+        $vertArr[] = [
+            $holdArr[2], // Term [0]
+            $courseCode, // Course Code [1]
+            $sectionDesignator, // Section Designator [2]
+            $holdArr[7], // Section Note [3]
+            $holdArr[14], // Author [4]
+            $holdArr[15], // Title [5]
+            $holdArr[18], // Publisher [6]
+            floatval($holdArr[24]), // New Retail [7]
+            floatval($holdArr[25]), // Used Retail [8]
+            floatval($holdArr[26]), // New Rental [9]
+            floatval($holdArr[27]), // Used Rental [10]
+            0.0, // Min Price Tally [11]
+            0.0 // Max Price Tally [12]
+            ];
+        $previousDesignator = $sectionDesignator;
+    }
+    else {
+        $vertArr[] = [
+            $holdArr[2], // Term [0]
+            $courseCode, // Course Code [1]
+            $sectionDesignator, // Section Designator [2]
+            $holdArr[7], // Section Note [3]
+            $holdArr[14], // Author [4]
+            $holdArr[15], // Title [5]
+            $holdArr[18], // Publisher [6]
+            floatval($holdArr[24]), // New Retail [7]
+            floatval($holdArr[25]), // Used Retail [8]
+            floatval($holdArr[26]), // New Rental [9]
+            floatval($holdArr[27]), // Used Rental [10]
+            0.0, // Min Price Tally [11]
+            0.0 // Max Price Tally [12]
+            ];
+        
+        // Maybe build up the tally here?
+    }
+    
+}
+
+foreach ($sections as $sect) {
+    if (!empty($sect)) {
+        $currated[] = $sect;
+    }
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>NCC - TT</title>
+        <title>NCC Bookstore</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
@@ -18,48 +114,43 @@ if (!($csv = file('tdata'))) {
     </head>
     <body>
         <div id="content" class="m-2">
-            <h1>Tally Tool - View Demo</h1>
+            <h1>NCC Bookstore</h1>
             <table id="table" class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Store Number</th>
-                        <th>Campus</th>
                         <th>Term</th>
-                        <th>Division</th>
-                        <th>Department</th>
-                        <th>Course Number</th>
+                        <th>Course</th>
                         <th>Section</th>
-                        <th>Section Note</th>
-                        <th>Adoption Status</th>
-                        <th>Choice Minimum</th>
-                        <th>Class Usage Indicator</th>
-                        <th>Item Type Indicator</th>
-                        <th>ISBN</th>
-                        <th>UPC</th>
-                        <th>Author / Manufacturer</th>
-                        <th>Title / Supply Description</th>
-                        <th>Edition</th>
-                        <th>Copyright</th>
-                        <th>Publisher / Vendor</th>
-                        <th>eBook Type</th>
-                        <th>eBook Format</th>
-                        <th>Rental Flag</th>
-                        <th>Item ID</th>
-                        <th>Parent Item ID</th>
-                        <th>New Retail Price</th>
-                        <th>Used Retail Price</th>
-                        <th>New Rental Fee</th>
-                        <th>Used Rental Fee</th>
-                        <th>Course Reference Number</th>
-                        <th>Instructor Last Name</th>
+                        <th>Lowest Cost of Materials</th>
+                        <th>Highest Cost of Materials</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($csv as $row): ?>
+                    <?php foreach ($currated as $row): ?>
                         <tr>
                             <td>
-                                <?= 
-                                    implode('</td><td>', array_pad(str_getcsv($row, "\t"), 30, '')) 
+                                <?=
+                                   $row->term;
+                                ?>
+                            </td>
+                            <td>
+                                <?=
+                                   $row->courseCode;
+                                ?>
+                            </td>
+                            <td>
+                                <?=
+                                   $row->section;
+                                ?>
+                            </td>
+                            <td>
+                                <?=
+                                   "$".number_format($row->minTotal(),2);
+                                ?>
+                            </td>
+                            <td>
+                                <?=
+                                   "$".number_format($row->maxTotal(),2);
                                 ?>
                             </td>
                         </tr>

@@ -2,8 +2,6 @@
 
 require_once 'inc/Section.php';
 
-// as long as it is 75% the same - consider it a match
-define('MATCH_THRESHOLD', .50);
 
 class Material {
     

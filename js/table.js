@@ -7,6 +7,7 @@ $(document).ready(function () {
  
     var table = $('#table').DataTable({
         orderCellsTop: true,
+        pageLength: 100,
         //fixedHeader: true,
 	autoWidth: false,
         initComplete: function () {

@@ -2,12 +2,17 @@
 
 require_once 'inc/Material.php';
 
+// as long as it is 75% the same - consider it a match
+define('MATCH_THRESHOLD', .50);
+
 class Section{
-    private string $courseCode;
-    private string $section;
-    private array $materials;
+    public string $term;
+    public string $courseCode;
+    public string $section;
+    public array $materials;
     
-    public function __construct(string $courseCode, string $section) {
+    public function __construct(string $term, string $courseCode, string $section) {
+        $this->term = $term;
         $this->courseCode = $courseCode;
         $this->section = $section;
         $this->materials = [];
@@ -50,22 +55,6 @@ class Section{
             }
         }
         return false;
-    }
-    
-    public function getMinPrice() {
-        $minPrice = array_reduce($this->materials, function ($v, $i) {
-            $v += $i->minPrice;
-            return $v;
-        }, 0);
-        return $minPrice;
-    }
-
-    public function getMaxPrice() {
-        $maxPrice = array_reduce($this->materials, function ($v, $i) {
-            $v += $i->maxPrice;
-            return $v;
-        }, 0);
-        return $maxPrice;
     }
 
     public function addMaterial($publisher, $title, $author, $priceData) {
