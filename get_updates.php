@@ -34,7 +34,7 @@ if ($bytesWritten === false) {
 $zip = new ZipArchive;
 $zipOkay = true;
 if ($zip->open($tmp) === TRUE) {
-    $unzipped = $tmp . '-unzip/';
+    $unzipped = $tmp . '-unzip';
     mkdir($unzipped, 0700);
     $zip->extractTo($unzipped);
     $zip->close();
@@ -48,7 +48,7 @@ if (!$zipOkay) {
     halt(500, 'Unzip failed');
 }
 
-$txt = $unzipped . str_replace('zip', 'txt', $tmp);
+$txt = $unzipped . str_replace('zip', 'txt', $remote);
 
 if (exec('clamscan ' . escapeshellarg($txt), $output, $resultCode) === false) {
     halt(500, 'Virus scan failed');
