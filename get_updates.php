@@ -17,7 +17,7 @@ echo <<<END
     $password
 END;
 
-$tmp = "FMS0971_HEOAExtract.zip";
+$tmp = tempnam(sys_get_temp_dir(),'HEOA_');
 
 $zip = new ZipArchive;
 $zipOkay = true;
@@ -29,7 +29,7 @@ if ($zip->open($tmp) === TRUE) {
 } else {
     $zipOkay = false;
 }
-//var_dump($tmp);
+
 unlink($tmp);
 
 if (!$zipOkay) {
@@ -62,6 +62,6 @@ if (file_exists($txt)) {
 }
 
 function halt($code, $message = '') {
-    http_response_code($code);
-    die($message);
+    echo $message;
+    exit($code);
 }
