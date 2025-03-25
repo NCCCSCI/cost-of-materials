@@ -1,5 +1,5 @@
 <?php
-if (!($csv = file('tdata'))) {
+if (!($csv = file('LATEST'))) {
     die('CSV read failed');
 }
 ?>

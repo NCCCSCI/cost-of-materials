@@ -2,12 +2,12 @@
 declare(strict_types=1);
 require_once 'inc/Material.php';
 require_once 'inc/Section.php';
+require_once 'inc/Semester.php';
 // Read in tdata, check for a successful read.
 if (!($csv = file('LATEST'))) {
     die('CSV read failed');
 }
 $currated = [];
-// $vertArr = [];
 
 $sectCode = "";
 $sections = [];
@@ -15,16 +15,13 @@ $previousCourse = "";
 $previousDesignator = "";
 array_shift($csv);
 array_pop($csv);
+$semesters = [
+    new Semester("Spring 2024"),
+    new Semester("Summer 2024"),
+    new Semester("Fall 2024")
+    ];
 foreach ($csv as $full) {
     $holdArr = str_getcsv($full, "\t");
-
-    /*
-     * Legend
-     * Term = $holdArr[2];
-     * Course Code = $holdArr[4].$holdArr[5];
-     * Section = $holdArr[6];
-     * 
-     */
 
     $term = trim($holdArr[2]);
     $courseCode = trim($holdArr[4] . $holdArr[5]);
@@ -53,57 +50,18 @@ foreach ($csv as $full) {
         $priceData = [];
     }
 
-//        echo "field ( ";
-//        var_dump($priceData);
-//        echo " )<br>";
-
     $section->addMaterial($holdArr[18], $holdArr[15], $holdArr[14], $priceData);
 
-    /*
-      $vertArr = [];
+}
 
-      $vertArr[] = [
-      $holdArr[2], // Term [0]
-      $courseCode, // Course Code [1]
-      $sectionDesignator, // Section Designator [2]
-      $holdArr[7], // Section Note [3]
-      $holdArr[14], // Author [4]
-      $holdArr[15], // Title [5]
-      $holdArr[18], // Publisher [6]
-      floatval($holdArr[24]), // New Retail [7]
-      floatval($holdArr[25]), // Used Retail [8]
-      floatval($holdArr[26]), // New Rental [9]
-      floatval($holdArr[27]), // Used Rental [10]
-      0.0, // Min Price Tally [11]
-      0.0 // Max Price Tally [12]
-      ];
-     */
-    // $previousDesignator = $sectionDesignator;
-
-    /*
-      if ($previousDesignator.$previousCourse != $sectionDesignator.$courseCode) {
-
-      }
-      else {
-
-      $vertArr[] = [
-      $holdArr[2], // Term [0]
-      $courseCode, // Course Code [1]
-      $sectionDesignator, // Section Designator [2]
-      $holdArr[7], // Section Note [3]
-      $holdArr[14], // Author [4]
-      $holdArr[15], // Title [5]
-      $holdArr[18], // Publisher [6]
-      floatval($holdArr[24]), // New Retail [7]
-      floatval($holdArr[25]), // Used Retail [8]
-      floatval($holdArr[26]), // New Rental [9]
-      floatval($holdArr[27]), // Used Rental [10]
-      0.0, // Min Price Tally [11]
-      0.0 // Max Price Tally [12]
-      ];
-
-      }
-     */
+foreach ($sections as $sect){
+    if($sect->term == "Spring 2024") {
+        $semesters[0]->addSection($sect);
+    } elseif ($sect->term == "Summer 2024") {
+        $semesters[1]->addSection($sect);
+    } elseif ($sect->term == "Fall 2024") {
+        $semesters[2]->addSection($sect);
+    }
 }
 
 foreach ($sections as $sect) {

@@ -9,12 +9,18 @@ class Section{
     public string $term;
     public string $courseCode;
     public string $section;
+    public string $crn;
+    public string $openStax;
+    public string $follett;
     public array $materials;
     
-    public function __construct(string $term, string $courseCode, string $section) {
+    public function __construct(string $term, string $courseCode, string $section, string $crn, string $openStax, string $follett) {
         $this->term = $term;
         $this->courseCode = $courseCode;
         $this->section = $section;
+        $this->crn = $crn;
+        $this->openStax = $openStax;
+        $this->follett = $follett;
         $this->materials = [];
     }
     
