@@ -6,7 +6,7 @@ require_once 'inc/Section.php';
 if (!($csv = file('LATEST.txt'))) {
     die('CSV read failed');
 }
-$currated = [];
+$curated = [];
 // $vertArr = [];
 
 $sectCode = "";
@@ -108,7 +108,7 @@ foreach ($csv as $full) {
 
 foreach ($sections as $sect) {
     if (!empty($sect)) {
-        $currated[] = $sect;
+        $curated[] = $sect;
     }
 }
 ?>
@@ -116,18 +116,20 @@ foreach ($sections as $sect) {
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>NCC Bookstore</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-        <link href="https://cdn.datatables.net/v/dt/jq-3.7.0/jszip-3.10.1/dt-1.13.8/b-2.4.2/b-colvis-2.4.2/b-html5-2.4.2/b-print-2.4.2/fc-4.3.0/fh-3.4.0/kt-2.11.0/sc-2.3.0/sl-1.7.0/datatables.min.css" rel="stylesheet">
-        <script src="https://cdn.datatables.net/v/dt/jq-3.7.0/jszip-3.10.1/dt-1.13.8/b-2.4.2/b-colvis-2.4.2/b-html5-2.4.2/b-print-2.4.2/fc-4.3.0/fh-3.4.0/kt-2.11.0/sc-2.3.0/sl-1.7.0/datatables.min.js"></script>
+        <title>Cost of Materials Estimator</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+<link href="https://cdn.datatables.net/v/bs5/jq-3.7.0/jszip-3.10.1/dt-2.2.2/b-3.2.2/b-colvis-3.2.2/b-html5-3.2.2/b-print-3.2.2/fc-5.0.4/fh-4.0.1/datatables.min.css" rel="stylesheet" integrity="sha384-Yqb7s+1ovGygzMrZmyIIjlJpIYbE7A3Cgz1nFlEQHKoLuAXzIEIXRj1mnkQMxfkc" crossorigin="anonymous">
+ 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js" integrity="sha384-VFQrHzqBh5qiJIU0uGU5CIW3+OWpdGGJM9LBnGbuIH2mkICcFZ7lPd/AAtI7SNf7" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js" integrity="sha384-/RlQG9uf0M2vcTw3CX7fbqgbj/h8wKxw7C3zu9/GxcBPRKOEcESxaxufwRXqzq6n" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/v/bs5/jq-3.7.0/jszip-3.10.1/dt-2.2.2/b-3.2.2/b-colvis-3.2.2/b-html5-3.2.2/b-print-3.2.2/fc-5.0.4/fh-4.0.1/datatables.min.js" integrity="sha384-oTXLyFEJWR1YPkdywPXt2tZpQB92Hgueppcpjq5ulX1xstE3Rbe7R7VoIUTWQibU" crossorigin="anonymous"></script>
         <link href="css/common.css" rel="stylesheet">
-        <script src="js/table.js" defer></script>
+        <script src="js/multi-table.js" defer></script>
     </head>
     <body>
         <div id="content" class="m-2">
-            <h1>NCC Bookstore</h1>
+            <h1>CCSNH Cost of Materials Estimator</h1>
             <ul class="nav nav-tabs mb-4" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" data-bs-toggle="tab" aria-current="page" href="#spring">Spring</a>
@@ -141,7 +143,7 @@ foreach ($sections as $sect) {
             </ul>
             <div class="tab-content">
                 <div class="tab-pane container active" id='spring'>
-                    <table id="table" class="table table-striped">
+                    <table id="table-0" class="table table-striped">
                         <thead>
                             <tr>
                                 <th>Term</th>
@@ -155,7 +157,7 @@ foreach ($sections as $sect) {
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($currated as $row): ?>
+                            <?php foreach ($curated as $row): ?>
                                 <?php if ($row->minTotal() == 0.0): ?>
                                     <tr class="bg-success bg-opacity-25">
                                     <?php else: ?>
@@ -207,7 +209,7 @@ foreach ($sections as $sect) {
                     </table>
                 </div>
                 <div class="tab-pane container" id='summer'>
-                    <table id="table" class="table table-striped">
+                    <table id="table-1" class="table table-striped">
                         <thead>
                             <tr>
                                 <th>Term</th>
@@ -221,7 +223,7 @@ foreach ($sections as $sect) {
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($currated as $row): ?>
+                            <?php foreach ($curated as $row): ?>
                                 <?php if ($row->minTotal() == 0.0): ?>
                                     <tr class="bg-success bg-opacity-25">
                                     <?php else: ?>
@@ -273,7 +275,7 @@ foreach ($sections as $sect) {
                     </table>
                 </div>
                 <div class="tab-pane container" id='fall'>
-                    <table id="table" class="table table-striped">
+                    <table id="table-2" class="table table-striped">
                         <thead>
                             <tr>
                                 <th>Term</th>
@@ -287,7 +289,7 @@ foreach ($sections as $sect) {
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($currated as $row): ?>
+                            <?php foreach ($curated as $row): ?>
                                 <?php if ($row->minTotal() == 0.0): ?>
                                     <tr class="bg-success bg-opacity-25">
                                     <?php else: ?>
