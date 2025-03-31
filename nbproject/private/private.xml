@@ -4,13 +4,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Student/Documents/NetBeansProjects/cost-of-materials/old.php</file>
-            <file>file:/C:/Users/Student/Documents/NetBeansProjects/cost-of-materials/get_updates.php</file>
-            <file>file:/C:/Users/Student/Documents/NetBeansProjects/cost-of-materials/inc/Material.php</file>
             <file>file:/C:/Users/Student/Documents/NetBeansProjects/cost-of-materials/LATEST</file>
             <file>file:/C:/Users/Student/Documents/NetBeansProjects/cost-of-materials/inc/Section.php</file>
-            <file>file:/C:/Users/Student/Documents/NetBeansProjects/cost-of-materials/feed.php</file>
-            <file>file:/C:/Users/Student/Documents/NetBeansProjects/cost-of-materials/.env</file>
+            <file>file:/C:/Users/Student/Documents/NetBeansProjects/cost-of-materials/inc/Semester.php</file>
             <file>file:/C:/Users/Student/Documents/NetBeansProjects/cost-of-materials/index.php</file>
+            <file>file:/C:/Users/Student/Documents/NetBeansProjects/cost-of-materials/test.php</file>
         </group>
     </open-files>
 </project-private>
