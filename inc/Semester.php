@@ -13,3 +13,14 @@ class Semester{
         $this->sections[] = $section;
     }
 }
+
+function getCurrentSemester() {
+    $semesters = ["Spring" => 1, "Summer" => 5, "Fall" => 8];
+    $month = date('n');
+    
+    foreach ($semesters as $k => $v) {
+        if ($month >= $v) {
+            return $k;
+        }
+    }
+}
