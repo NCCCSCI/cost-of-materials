@@ -79,7 +79,7 @@ foreach ($csv as $full) {
 //        var_dump($s);
 //    }
 //}
-
+$currentSemester = getCurrentSemester();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -103,7 +103,7 @@ foreach ($csv as $full) {
             <ul class="nav nav-tabs mb-4" role="tablist">
                 <?php foreach ($semesters as $k => $s): ?>
                 <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="tab" href="#<?= str_replace(' ','',$k) ?>">
+                    <a class="nav-link<?= strpos($k,$currentSemester) !== false ? ' active' : '' ?>" data-bs-toggle="tab" href="#<?= str_replace(' ','',$k) ?>">
                         <?= "$k" ?>
                     </a>
                 </li>
@@ -111,7 +111,7 @@ foreach ($csv as $full) {
             </ul>
             <div class="tab-content">
                 <?php foreach ($semesters as $k => $s): ?>
-                <div class="tab-pane container" id='<?= str_replace(' ','',$k) ?>'>
+                <div class="tab-pane container<?= strpos($k,$currentSemester) !== false ? ' active' : '' ?>" id='<?= str_replace(' ','',$k) ?>'>
                     <table id="table-<?= str_replace(' ','',$k) ?>" class="table table-striped">
                         <thead>
                             <tr>
