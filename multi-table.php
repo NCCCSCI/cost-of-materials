@@ -36,17 +36,26 @@ foreach ($csv as $full) {
     $courseCode = trim($holdArr[4] . $holdArr[5]);
     $sectionDesignator = trim($holdArr[6]);
     $crn = trim($holdArr[28]);
-    if (str_contains($holdArr[7], "free")) {
-        $openStax = "Y";
-    } else {
-        $openStax = "N";
-    }
+    
+    
+    
+    // reading in detail, debug
+//    if ($courseCode == "ACCT202N") {
+//        $counter = 0;
+//        foreach ($holdArr as $h) {
+//            var_dump($h);
+//            echo "<br>";
+//            echo "field ".strval($counter)."<br>";
+//            $counter += 1;
+//        }
+//    }
+
     $follett = $holdArr[29];
 
     if (isset($sections[$term . $courseCode . $sectionDesignator])) {
         $section = $sections[$term . $courseCode . $sectionDesignator];
     } else {
-        $section = new Section($term, $courseCode, $sectionDesignator, $crn, $openStax, $follett);
+        $section = new Section($term, $courseCode, $sectionDesignator, $crn, $follett);
         $sections[$term . $courseCode . $sectionDesignator] = $section;
     }
     if ($holdArr[10] == "RQ") {
@@ -59,10 +68,6 @@ foreach ($csv as $full) {
         $priceData = [];
     }
 
-//        echo "field ( ";
-//        var_dump($priceData);
-//        echo " )<br>";
-
     $section->addMaterial($holdArr[18], $holdArr[15], $holdArr[14], $priceData);
 
     if (isset($semesters[$term])) {
@@ -74,12 +79,7 @@ foreach ($csv as $full) {
     $semester->addSection($section);
 }
 
-//foreach($semesters as $k => $v) {
-//    foreach($v->sections as $s) {
-//        var_dump($s);
-//    }
-//}
-
+$currentSemester = getCurrentSemester();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -103,7 +103,7 @@ foreach ($csv as $full) {
             <ul class="nav nav-tabs mb-4" role="tablist">
                 <?php foreach ($semesters as $k => $s): ?>
                 <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="tab" href="#<?= str_replace(' ','',$k) ?>">
+                    <a class="nav-link<?= strpos($k,$currentSemester) !== false ? ' active' : '' ?>" data-bs-toggle="tab" href="#<?= str_replace(' ','',$k) ?>">
                         <?= "$k" ?>
                     </a>
                 </li>
@@ -111,7 +111,7 @@ foreach ($csv as $full) {
             </ul>
             <div class="tab-content">
                 <?php foreach ($semesters as $k => $s): ?>
-                <div class="tab-pane container" id='<?= str_replace(' ','',$k) ?>'>
+                <div class="tab-pane container<?= strpos($k,$currentSemester) !== false ? ' active' : '' ?>" id='<?= str_replace(' ','',$k) ?>'>
                     <table id="table-<?= str_replace(' ','',$k) ?>" class="table table-striped">
                         <thead>
                             <tr>
@@ -121,7 +121,6 @@ foreach ($csv as $full) {
                                 <th>Lowest Cost of Materials</th>
                                 <th>Highest Cost of Materials</th>
                                 <th>Follett Access</th>
-                                <th>OER</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -159,11 +158,6 @@ foreach ($csv as $full) {
                                 <td>
                                     <?=
                                     $row->follett;
-                                    ?>
-                                </td>
-                                <td>
-                                    <?=
-                                    $row->openStax;
                                     ?>
                                 </td>
                             </tr>

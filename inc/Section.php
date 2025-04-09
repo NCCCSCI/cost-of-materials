@@ -10,16 +10,14 @@ class Section{
     public string $courseCode;
     public string $section;
     public string $crn;
-    public string $openStax;
     public string $follett;
     public array $materials;
     
-    public function __construct(string $term, string $courseCode, string $section, string $crn, string $openStax, string $follett) {
+    public function __construct(string $term, string $courseCode, string $section, string $crn,  string $follett) {
         $this->term = $term;
         $this->courseCode = $courseCode;
         $this->section = $section;
         $this->crn = $crn;
-        $this->openStax = $openStax;
         $this->follett = $follett;
         $this->materials = [];
     }
@@ -62,6 +60,7 @@ class Section{
                 return $k;
             }
         }
+        
         return false;
     }
 
@@ -95,6 +94,16 @@ class Section{
             $material->minPrice = $minPrice;
             $material->maxPrice = $maxPrice;
         }
+        
+//        if($this->courseCode == "ACCT202N") {
+//            var_dump($this->materials);
+//            echo "<br>";
+//            var_dump($priceData);
+//            echo "<br>";
+//            var_dump($this->term);
+//            echo "<br>";
+//        }
+        
     }
     
     public function minTotal () {

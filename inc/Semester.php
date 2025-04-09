@@ -10,7 +10,7 @@ class Semester{
     }
     
     public function addSection(object $section) {
-        $this->sections[] = $section;
+        $this->sections[$section->crn] = $section;
     }
 }
 

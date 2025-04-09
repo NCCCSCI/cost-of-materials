@@ -19,7 +19,7 @@ $remote = '/FMS' . $storeId . '_HEOAExtract.zip';
 $tmp = tempnam(sys_get_temp_dir(), 'HEOA_');
 
 $sftp = ssh2_sftp($connection);
-$stream = fopen('ssh2.sftp://' . intval($sftp) . '/.' . $remote, 'r');
+$stream = fopen('ssh2.sftp://' . intval($sftp) . $remote, 'r');
 if ($stream === false) {
     halt(502, 'File open failed');
 }
