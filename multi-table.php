@@ -51,6 +51,7 @@ foreach ($csv as $full) {
 //    }
 
     $follett = $holdArr[29];
+    $required = $holdArr[10];
 
     if (isset($sections[$term . $courseCode . $sectionDesignator])) {
         $section = $sections[$term . $courseCode . $sectionDesignator];
@@ -58,17 +59,19 @@ foreach ($csv as $full) {
         $section = new Section($term, $courseCode, $sectionDesignator, $crn, $follett);
         $sections[$term . $courseCode . $sectionDesignator] = $section;
     }
-    if ($holdArr[10] == "RQ") {
+    if ($required == "RQ" || $required == "CH") {
         $priceData = [
             floatval($holdArr[24]),
             floatval($holdArr[25]),
             floatval($holdArr[26]),
             floatval($holdArr[27])];
-    } else {
-        $priceData = [];
-    }
+        $section->addMaterial($holdArr[18], $holdArr[15], $holdArr[14], $priceData);
+    } 
+//    else {
+//        $priceData = [];
+//    }
 
-    $section->addMaterial($holdArr[18], $holdArr[15], $holdArr[14], $priceData);
+    
 
     if (isset($semesters[$term])) {
         $semester = $semesters[$term];
@@ -127,6 +130,7 @@ $currentSemester = getCurrentSemester();
                                 <th>Lowest Cost of Materials</th>
                                 <th>Highest Cost of Materials</th>
                                 <th>Follett Access</th>
+                                <th>Certainty</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -164,6 +168,15 @@ $currentSemester = getCurrentSemester();
                                 <td>
                                     <?=
                                     $row->follett;
+                                    ?>
+                                </td>
+                                <td>
+                                    <?php
+                                    if($row->uncertain) {
+                                       echo "N"; 
+                                    } else {
+                                       echo "Y";
+                                    }
                                     ?>
                                 </td>
                             </tr>

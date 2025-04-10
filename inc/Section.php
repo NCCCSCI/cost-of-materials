@@ -11,6 +11,7 @@ class Section{
     public string $section;
     public string $crn;
     public string $follett;
+    public bool $uncertain = false;
     public array $materials;
     
     public function __construct(string $term, string $courseCode, string $section, string $crn,  string $follett) {
@@ -57,6 +58,7 @@ class Section{
             $kArr = preg_split("/[\s,.:;]+/", $k);
             $intersect = array_intersect($signatureArr, $kArr);
             if (count($intersect) >= MATCH_THRESHOLD * count($kArr)) {
+                $this->uncertain = true;
                 return $k;
             }
         }
