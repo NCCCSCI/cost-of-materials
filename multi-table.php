@@ -79,6 +79,12 @@ foreach ($csv as $full) {
     $semester->addSection($section);
 }
 
+//foreach($semesters as $k => $v) {
+//    foreach($v->sections as $s) {
+//        var_dump($s);
+//    }
+//}
+
 $currentSemester = getCurrentSemester();
 ?>
 <!DOCTYPE html>
