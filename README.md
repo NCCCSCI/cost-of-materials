@@ -41,7 +41,7 @@ If a section's materials have no cost, or are not required,
 the row displays green. These are no cost courses.
 ![Biology 105N has two sections with no cost materials](markdown-imgs/no_cost.png)
 
-The Certainty boolean
+The Certainty boolean:  
 Within the program, Professor Gamrat and I developed a
 "guesstimator" to determine if materials are the same as
 each other, as the listed titles include needless extra 
