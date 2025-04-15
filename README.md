@@ -20,45 +20,37 @@ Bear in mind materials purchased through Follett Access are paid as fees to NCC 
 
 ## Objective
 
-This webpage is designed to assist teachers and staff with finding the expenses of materials
-in a given semester.
+This webpage is designed to assist staff with 
+determining low and no costcourse material.
 
 ## How To
 
-Enter the section identifier in the search box. For example: csci20n
+Select the Semester, note how the page opens on the current semester.
+![The Semesters are separated as tabs](markdown-imgs/semester_tab.png)
+
+The table below has search bars allows you to search within each column.
 ![The search bar](markdown-imgs/csci120n.png)
 
-To see all sections, enter the course, do not include a course code,  
-only use the course short hand. For example, csci, which is short for Computer Science.
-![Entry of CSCI for the sake of a demo](markdown-imgs/csci.png)
+Select the arrows next to a column header to sort by that column.
+![Sorting by Course](markdown-imgs/arrows.png)
 
-See also the selector on the top left, this lets you decide how many rows to display.
-![The show N entries selector, and list of options](markdown-imgs/show_entries.png)
+In the top left, select how many rows to display.
+![The show entries selector, and list of options](markdown-imgs/show_entries.png)  
 
-The results automatically appear below, no need to press enter.
-![The table with the results searched for](markdown-imgs/csci_result.png)
+If a section's materials have no cost, or are not required, 
+the row displays green. These are no cost courses.
+![Biology 105N has two sections with no cost materials](markdown-imgs/no_cost.png)
 
-Make sure to read over the title section and section note.  
-The section note may contain info on whether the book is provided  
-for free via openstax or another venue.  
-The Title can provide context to whether a book is digital or physical.  
-The prices listed are based on the digital or physical book's sale options.  
-
-For example: csci120n - flx has a listing for a Pearson+ copy of the textbook.  
-The singular price is its rental fee via Pearson+
-![A listing of Starting Out with Python as provided by Pearson+](markdown-imgs/pearson.png)
-
-If you want to sort the results by lowest price, clicking a column header, such as New Retail Price,  
-will sort the new retail prices in ascending order, showing cheapest, or zero, first.
-![Demonstration of ascending sorted data](markdown-imgs/asc.png)
-
-Additionally, if you want to search a specific column, see the search bars under each column title.  
-Those will search specifically for details within that column.
-![The column search bars](markdown-imgs/column_search.png)
-
-The table will contain information of multiple semesters at any given time. To exclusively look for a  
-desired semester. Use the search bar under Term, enter the season, year, or both.
-![The table searching for courses under csci, but only during fall terms](markdown-imgs/term.png)
+The Certainty boolean
+Within the program, Professor Gamrat and I developed a
+"guesstimator" to determine if materials are the same as
+each other, as the listed titles include needless extra 
+data that will confuse any simple comparison.
+However, the validity of this simple algorithm is unknown,
+as an estimate. Whenever the material has been estimated by
+the algoritm, it is marked N for Uncertain. To the best of
+our knowledge, the price data is correct.
+![The Certainty boolean displays No for Uncertain]{markdown-imgs/certainty.png}
 
 ## Credits
 

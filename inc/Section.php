@@ -26,12 +26,6 @@ class Section{
     private function makeSignature($publisher, $title, $author) {
         if ($title !== '') {
             // remove common words and the author's name
-            /* echo "publisher ";
-            var_dump($publisher);
-            echo " title ";
-            var_dump($title);
-            echo " auth ";
-            var_dump($author); */
 	    $author = addcslashes($author,'/');
 	    $publisher = addcslashes($publisher,'/');
             $re1 = preg_replace("/\b(THE|A|OF|IS|AN|AND|($author)|($publisher)|ETEXT|EBOOK|SUBSCRIPTION|\d+-\w+ TERM|INSTANT ACCESS)\b/i", '', $title);
@@ -96,15 +90,6 @@ class Section{
             $material->minPrice = $minPrice;
             $material->maxPrice = $maxPrice;
         }
-        
-//        if($this->courseCode == "ACCT202N") {
-//            var_dump($this->materials);
-//            echo "<br>";
-//            var_dump($priceData);
-//            echo "<br>";
-//            var_dump($this->term);
-//            echo "<br>";
-//        }
         
     }
     
