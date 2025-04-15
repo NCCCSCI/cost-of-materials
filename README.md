@@ -25,32 +25,32 @@ determining low and no costcourse material.
 
 ## How To
 
-Select the Semester, note how the page opens on the current semester.
+Select the Semester, note how the page opens on the current semester.  
 ![The Semesters are separated as tabs](markdown-imgs/semester_tab.png)
 
-The table below has search bars allows you to search within each column.
+The table below has search bars allows you to search within each column.  
 ![The search bar](markdown-imgs/csci120n.png)
 
-Select the arrows next to a column header to sort by that column.
+Select the arrows next to a column header to sort by that column.  
 ![Sorting by Course](markdown-imgs/arrows.png)
 
-In the top left, select how many rows to display.
+In the top left, select how many rows to display.  
 ![The show entries selector, and list of options](markdown-imgs/show_entries.png)  
 
 If a section's materials have no cost, or are not required, 
-the row displays green. These are no cost courses.
+the row displays green. These are no cost courses.  
 ![Biology 105N has two sections with no cost materials](markdown-imgs/no_cost.png)
 
 The Certainty boolean:  
 Within the program, Professor Gamrat and I developed a
 "guesstimator" to determine if materials are the same as
 each other, as the listed titles include needless extra 
-data that will confuse any simple comparison.
+data that will confuse any simple comparison.  
 However, the validity of this simple algorithm is unknown,
 as an estimate. Whenever the material has been estimated by
 the algoritm, it is marked N for Uncertain. To the best of
 our knowledge, the price data is correct.  
-![The Certainty boolean displays No for Uncertain]{markdown-imgs/certainty.png}
+![The Certainty boolean displays No for Uncertain](markdown-imgs/certainty.png)
 
 ## Credits
 
