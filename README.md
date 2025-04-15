@@ -49,7 +49,7 @@ data that will confuse any simple comparison.
 However, the validity of this simple algorithm is unknown,
 as an estimate. Whenever the material has been estimated by
 the algoritm, it is marked N for Uncertain. To the best of
-our knowledge, the price data is correct.
+our knowledge, the price data is correct.  
 ![The Certainty boolean displays No for Uncertain]{markdown-imgs/certainty.png}
 
 ## Credits
