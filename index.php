@@ -40,7 +40,7 @@ foreach ($csv as $full) {
             floatval($holdArr[25]),
             floatval($holdArr[26]),
             floatval($holdArr[27])];
-        $section->addMaterial($holdArr[18], $holdArr[15], $holdArr[14], $priceData);
+        $section->addMaterial($holdArr[18], $holdArr[15], $holdArr[14], $priceData, $follett);
     }
 
     if (isset($semesters[$term])) {

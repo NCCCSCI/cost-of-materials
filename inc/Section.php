@@ -60,7 +60,8 @@ class Section{
         return false;
     }
 
-    public function addMaterial($publisher, $title, $author, $priceData) {
+    public function addMaterial($publisher, $title, $author, $priceData, $follett) {
+	$this->follett = $this->follett || $follett;
         $filtered = array_filter($priceData, function ($v) {
             return !empty($v);
         });
